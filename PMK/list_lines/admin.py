@@ -1,0 +1,61 @@
+from django.contrib import admin
+from .models import (ListDepartment, ListLine, SystemLine, ManufacturerList,
+                     MaintenanceList, EquipmentTypeList, Location,
+                     EquipmentList)
+
+# Register your models here.
+admin.site.register(ListDepartment)
+admin.site.register(ManufacturerList)
+admin.site.register(MaintenanceList)
+admin.site.register(EquipmentTypeList)
+admin.site.register(Location)
+
+
+class CPUModelAdmin(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'manufacturer',
+        'is_status_programm',
+        'is_status_document',
+        'is_status_spare_part',
+        'description',
+        'department_type',
+        'line_type',
+        'system_type',
+        'maintenance',
+        'equipment_type',
+        'location',
+    )
+    list_editable = (
+        'is_status_programm',
+        'is_status_document',
+        'is_status_spare_part'
+    )
+    search_fields = ('title',)
+    list_filter = ('manufacturer', 'line_type',)
+    list_display_links = ('title',)
+
+
+admin.site.register(EquipmentList, CPUModelAdmin)
+
+
+class LineModel(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'department_type',
+    )
+    list_filter = ('department_type',)
+
+
+admin.site.register(ListLine, LineModel)
+
+
+class SystemModel(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'line_type',
+    )
+    list_filter = ('line_type',)
+
+
+admin.site.register(SystemLine, SystemModel)

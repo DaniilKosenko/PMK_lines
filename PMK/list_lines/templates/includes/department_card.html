@@ -1,0 +1,24 @@
+<div class="card col-3">
+  <div class="card-header">
+    {{ department.title }}
+  </div>
+  <div class="col">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <p class="card-text fs-5">Линии</p>
+        {% for line in department.line.all %}
+          <li> 
+            <a href="{% url 'list_lines:lines' line.id %}">
+              {{ line.title }}
+            </a>
+          </li>
+        {% endfor %}
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Подробнее</button>
+          </div>          
+        </div>
+      </div>
+    </div>
+    </div>  
+</div>

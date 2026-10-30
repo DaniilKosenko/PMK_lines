@@ -1,0 +1,24 @@
+<div class="card col-3">
+  <div class="card-header">
+    {{ line.title }}
+  </div>
+  <div class="col">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <p class="card-text fs-5">Системы</p>
+        {% for system in line.system.all %}
+          <li> 
+            <a href="{% url 'list_lines:equipment' system.id %}">
+              {{ system.title }}
+            </a>
+          </li>
+        {% endfor %}
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Подробнее</button>
+          </div>          
+        </div>
+      </div>
+    </div>
+    </div>  
+</div>
